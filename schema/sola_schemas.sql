@@ -4404,6 +4404,226 @@ CREATE TABLE address_historic (
 
 ALTER TABLE address_historic OWNER TO postgres;
 
+--
+-- Name: commune; Type: TABLE; Schema: address; Owner: postgres
+--
+
+CREATE TABLE commune (
+    code character varying(20) NOT NULL,
+    municipality_code character varying(20) NOT NULL,
+    display_value character varying(500) NOT NULL,
+    status character(1) DEFAULT 't'::bpchar NOT NULL,
+    description character varying(1000)
+);
+
+
+ALTER TABLE commune OWNER TO postgres;
+
+--
+-- Name: TABLE commune; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON TABLE commune IS 'Code list of communes.';
+
+
+--
+-- Name: COLUMN commune.code; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN commune.code IS 'The code for commune.';
+
+
+--
+-- Name: COLUMN commune.municipality_code; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN commune.municipality_code IS 'The code commune.';
+
+
+--
+-- Name: COLUMN commune.display_value; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN commune.display_value IS 'Commune name.';
+
+
+--
+-- Name: COLUMN commune.status; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN commune.status IS 'Status of the record.';
+
+
+--
+-- Name: COLUMN commune.description; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN commune.description IS 'Description of the record.';
+
+
+--
+-- Name: country; Type: TABLE; Schema: address; Owner: postgres
+--
+
+CREATE TABLE country (
+    code character varying(20) NOT NULL,
+    display_value character varying(500) NOT NULL,
+    status character(1) DEFAULT 't'::bpchar NOT NULL,
+    description character varying(1000)
+);
+
+
+ALTER TABLE country OWNER TO postgres;
+
+--
+-- Name: TABLE country; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON TABLE country IS 'Code list of countries.';
+
+
+--
+-- Name: COLUMN country.code; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN country.code IS 'The code for country.';
+
+
+--
+-- Name: COLUMN country.display_value; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN country.display_value IS 'Country name.';
+
+
+--
+-- Name: COLUMN country.status; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN country.status IS 'Status of the record.';
+
+
+--
+-- Name: COLUMN country.description; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN country.description IS 'Description of the record.';
+
+
+--
+-- Name: municipality; Type: TABLE; Schema: address; Owner: postgres
+--
+
+CREATE TABLE municipality (
+    code character varying(20) NOT NULL,
+    province_code character varying(20) NOT NULL,
+    display_value character varying(500) NOT NULL,
+    status character(1) DEFAULT 't'::bpchar NOT NULL,
+    description character varying(1000)
+);
+
+
+ALTER TABLE municipality OWNER TO postgres;
+
+--
+-- Name: TABLE municipality; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON TABLE municipality IS 'Code list of municipalities.';
+
+
+--
+-- Name: COLUMN municipality.code; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN municipality.code IS 'The code for municipality.';
+
+
+--
+-- Name: COLUMN municipality.province_code; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN municipality.province_code IS 'The code province.';
+
+
+--
+-- Name: COLUMN municipality.display_value; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN municipality.display_value IS 'Municipality name.';
+
+
+--
+-- Name: COLUMN municipality.status; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN municipality.status IS 'Status of the record.';
+
+
+--
+-- Name: COLUMN municipality.description; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN municipality.description IS 'Description of the record.';
+
+
+--
+-- Name: province; Type: TABLE; Schema: address; Owner: postgres
+--
+
+CREATE TABLE province (
+    code character varying(20) NOT NULL,
+    display_value character varying(500) NOT NULL,
+    status character(1) DEFAULT 't'::bpchar NOT NULL,
+    description character varying(1000),
+    country_code character varying(20) NOT NULL
+);
+
+
+ALTER TABLE province OWNER TO postgres;
+
+--
+-- Name: TABLE province; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON TABLE province IS 'Code list of provinces.';
+
+
+--
+-- Name: COLUMN province.code; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN province.code IS 'The code for province.';
+
+
+--
+-- Name: COLUMN province.display_value; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN province.display_value IS 'Province name.';
+
+
+--
+-- Name: COLUMN province.status; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN province.status IS 'Status of the record.';
+
+
+--
+-- Name: COLUMN province.description; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN province.description IS 'Description of the record.';
+
+
+--
+-- Name: COLUMN province.country_code; Type: COMMENT; Schema: address; Owner: postgres
+--
+
+COMMENT ON COLUMN province.country_code IS 'The code country.';
+
+
 SET search_path = administrative, pg_catalog;
 
 --
@@ -11019,6 +11239,55 @@ COMMENT ON SEQUENCE document_nr_seq IS 'Sequence number used as the basis for th
 SET search_path = opentenure, pg_catalog;
 
 --
+-- Name: adjacency_type; Type: TABLE; Schema: opentenure; Owner: postgres
+--
+
+CREATE TABLE adjacency_type (
+    code character varying(20) NOT NULL,
+    display_value character varying(500) NOT NULL,
+    status character(1) DEFAULT 't'::bpchar NOT NULL,
+    description character varying(1000)
+);
+
+
+ALTER TABLE adjacency_type OWNER TO postgres;
+
+--
+-- Name: TABLE adjacency_type; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON TABLE adjacency_type IS 'Code list of adjacency types.';
+
+
+--
+-- Name: COLUMN adjacency_type.code; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN adjacency_type.code IS 'The code for the adjacency type.';
+
+
+--
+-- Name: COLUMN adjacency_type.display_value; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN adjacency_type.display_value IS 'Displayed value of the adjacency type.';
+
+
+--
+-- Name: COLUMN adjacency_type.status; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN adjacency_type.status IS 'Status of the record.';
+
+
+--
+-- Name: COLUMN adjacency_type.description; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN adjacency_type.description IS 'Description of the adjacency type.';
+
+
+--
 -- Name: attachment; Type: TABLE; Schema: opentenure; Owner: postgres
 --
 
@@ -11324,6 +11593,16 @@ CREATE TABLE claim (
     termination_reason_code character varying(20),
     create_transaction character varying(40),
     terminate_transaction character varying(40),
+    block_number character varying(30),
+    has_constructions boolean,
+    north_adjacency_type character varying(20),
+    construction_date date,
+    south_adjacency_type character varying(20),
+    west_adjacency_type character varying(20),
+    east_adjacency_type character varying(20),
+    neighborhood character varying(150),
+    land_project_code character varying(20),
+    commune_code character varying(20),
     CONSTRAINT enforce_geotype_mapped_geometry CHECK (((public.geometrytype(mapped_geometry) = 'POLYGON'::text) OR (public.geometrytype(mapped_geometry) = 'POINT'::text) OR (public.geometrytype(mapped_geometry) = 'LINESTRING'::text) OR (mapped_geometry IS NULL))),
     CONSTRAINT enforce_valid_mapped_geometry CHECK (public.st_isvalid(mapped_geometry))
 );
@@ -11570,6 +11849,76 @@ COMMENT ON COLUMN claim.terminate_transaction IS 'Transaction code, used to term
 
 
 --
+-- Name: COLUMN claim.block_number; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN claim.block_number IS 'Block number of the parcel.';
+
+
+--
+-- Name: COLUMN claim.has_constructions; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN claim.has_constructions IS 'Boolean flag indicating that parcel has constructions.';
+
+
+--
+-- Name: COLUMN claim.north_adjacency_type; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN claim.north_adjacency_type IS 'North djacency type code';
+
+
+--
+-- Name: COLUMN claim.construction_date; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN claim.construction_date IS 'Date of construction.';
+
+
+--
+-- Name: COLUMN claim.south_adjacency_type; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN claim.south_adjacency_type IS 'South djacency type code';
+
+
+--
+-- Name: COLUMN claim.west_adjacency_type; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN claim.west_adjacency_type IS 'West djacency type code';
+
+
+--
+-- Name: COLUMN claim.east_adjacency_type; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN claim.east_adjacency_type IS 'East djacency type code';
+
+
+--
+-- Name: COLUMN claim.neighborhood; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN claim.neighborhood IS 'Name of neighborhood.';
+
+
+--
+-- Name: COLUMN claim.land_project_code; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN claim.land_project_code IS 'Land project code.';
+
+
+--
+-- Name: COLUMN claim.commune_code; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN claim.commune_code IS 'Commune code.';
+
+
+--
 -- Name: claim_comment; Type: TABLE; Schema: opentenure; Owner: postgres
 --
 
@@ -11718,7 +12067,17 @@ CREATE TABLE claim_historic (
     termination_date date,
     termination_reason_code character varying(20),
     create_transaction character varying(40),
-    terminate_transaction character varying(40)
+    terminate_transaction character varying(40),
+    block_number character varying(30),
+    has_constructions boolean,
+    construction_date date,
+    north_adjacency_type character varying(20),
+    south_adjacency_type character varying(20),
+    west_adjacency_type character varying(20),
+    east_adjacency_type character varying(20),
+    neighborhood character varying(150),
+    land_project_code character varying(20),
+    commune_code character varying(20)
 );
 
 
@@ -13050,6 +13409,55 @@ CREATE TABLE form_template_historic (
 ALTER TABLE form_template_historic OWNER TO postgres;
 
 --
+-- Name: land_project; Type: TABLE; Schema: opentenure; Owner: postgres
+--
+
+CREATE TABLE land_project (
+    code character varying(20) NOT NULL,
+    display_value character varying(500) NOT NULL,
+    status character(1) DEFAULT 't'::bpchar NOT NULL,
+    description character varying(1000)
+);
+
+
+ALTER TABLE land_project OWNER TO postgres;
+
+--
+-- Name: TABLE land_project; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON TABLE land_project IS 'Code list land projects.';
+
+
+--
+-- Name: COLUMN land_project.code; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN land_project.code IS 'The code for the land project.';
+
+
+--
+-- Name: COLUMN land_project.display_value; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN land_project.display_value IS 'Displayed value of the land project.';
+
+
+--
+-- Name: COLUMN land_project.status; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN land_project.status IS 'Status of the record.';
+
+
+--
+-- Name: COLUMN land_project.description; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN land_project.description IS 'Description of the land project.';
+
+
+--
 -- Name: party; Type: TABLE; Schema: opentenure; Owner: postgres
 --
 
@@ -13071,7 +13479,19 @@ CREATE TABLE party (
     change_action character(1) DEFAULT 'i'::bpchar NOT NULL,
     change_user character varying(50),
     change_time timestamp without time zone DEFAULT now() NOT NULL,
-    is_person boolean DEFAULT true NOT NULL
+    is_person boolean DEFAULT true NOT NULL,
+    other_name character varying(150),
+    id_issuance_date date,
+    id_issuance_country character varying(20),
+    id_issuance_province character varying(20),
+    birth_country_code character varying(20),
+    birth_commune_code character varying(20),
+    residence_commune_code character varying(20),
+    father_name character varying(150),
+    mother_name character varying(150),
+    beneficiary_name character varying(150),
+    beneficiary_id_number character varying(20),
+    marital_status_code character varying(20)
 );
 
 
@@ -13208,6 +13628,90 @@ COMMENT ON COLUMN party.change_time IS 'The date and time the row was last modif
 --
 
 COMMENT ON COLUMN party.is_person IS 'Indicates if record is for individual or company (legal entity)';
+
+
+--
+-- Name: COLUMN party.other_name; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.other_name IS 'Other name.';
+
+
+--
+-- Name: COLUMN party.id_issuance_date; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.id_issuance_date IS 'ID issuance date.';
+
+
+--
+-- Name: COLUMN party.id_issuance_country; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.id_issuance_country IS 'ID issuance place (country).';
+
+
+--
+-- Name: COLUMN party.id_issuance_province; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.id_issuance_province IS 'ID issuance place (province).';
+
+
+--
+-- Name: COLUMN party.birth_country_code; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.birth_country_code IS 'Country code of place of birth.';
+
+
+--
+-- Name: COLUMN party.birth_commune_code; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.birth_commune_code IS 'Commune code of place of birth.';
+
+
+--
+-- Name: COLUMN party.residence_commune_code; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.residence_commune_code IS 'Commune code of residence.';
+
+
+--
+-- Name: COLUMN party.father_name; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.father_name IS 'Father name.';
+
+
+--
+-- Name: COLUMN party.mother_name; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.mother_name IS 'Mother name.';
+
+
+--
+-- Name: COLUMN party.beneficiary_name; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.beneficiary_name IS 'Beneficiary name.';
+
+
+--
+-- Name: COLUMN party.beneficiary_id_number; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.beneficiary_id_number IS 'Beneficiary ID number.';
+
+
+--
+-- Name: COLUMN party.marital_status_code; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.marital_status_code IS 'Marital status code.';
 
 
 --
@@ -13415,7 +13919,19 @@ CREATE TABLE party_historic (
     change_user character varying(50),
     change_time timestamp without time zone,
     change_time_valid_until timestamp without time zone DEFAULT now() NOT NULL,
-    is_person boolean
+    is_person boolean,
+    other_name character varying(150),
+    id_issuance_date date,
+    id_issuance_country character varying(20),
+    id_issuance_province character varying(20),
+    birth_country_code character varying(20),
+    birth_commune_code character varying(20),
+    residence_commune_code character varying(20),
+    father_name character varying(150),
+    mother_name character varying(150),
+    beneficiary_name character varying(150),
+    beneficiary_id_number character varying(20),
+    marital_status_code character varying(20)
 );
 
 
@@ -14083,6 +14599,376 @@ COMMENT ON COLUMN termination_reason.status IS 'Status of the termination reason
 COMMENT ON COLUMN termination_reason.description IS 'Description of the termination reason.';
 
 
+--
+-- Name: workflow_action; Type: TABLE; Schema: opentenure; Owner: postgres
+--
+
+CREATE TABLE workflow_action (
+    id character varying(40) NOT NULL,
+    step_id character varying(40) NOT NULL,
+    report_name character varying(100),
+    button_label character varying(100) NOT NULL,
+    action_code character varying(20) DEFAULT 'print'::character varying NOT NULL,
+    rowidentifier character varying(40) DEFAULT public.uuid_generate_v1() NOT NULL,
+    rowversion integer DEFAULT 0 NOT NULL,
+    change_action character(1) DEFAULT 'i'::bpchar NOT NULL,
+    change_user character varying(50),
+    change_time timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT workflow_action_check_action_code CHECK (((action_code)::text = ANY ((ARRAY['print'::character varying, 'approve'::character varying, 'issue'::character varying])::text[]))),
+    CONSTRAINT workflow_action_check_action_code_report CHECK (((((action_code)::text = 'print'::text) AND (report_name IS NOT NULL)) OR (((action_code)::text <> 'print'::text) AND (report_name IS NULL))))
+);
+
+
+ALTER TABLE workflow_action OWNER TO postgres;
+
+--
+-- Name: TABLE workflow_action; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON TABLE workflow_action IS 'Workflow actions';
+
+
+--
+-- Name: COLUMN workflow_action.id; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_action.id IS 'Primary key.';
+
+
+--
+-- Name: COLUMN workflow_action.step_id; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_action.step_id IS 'Workflow step id.';
+
+
+--
+-- Name: COLUMN workflow_action.report_name; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_action.report_name IS 'Report file name to trigger at the workflow step.';
+
+
+--
+-- Name: COLUMN workflow_action.button_label; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_action.button_label IS 'Label on the button, used to trigger the report.';
+
+
+--
+-- Name: COLUMN workflow_action.action_code; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_action.action_code IS 'Action code. Allowed options are: print - Printing report, approve - Approving claim, issue - Issuing claim';
+
+
+--
+-- Name: COLUMN workflow_action.rowidentifier; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_action.rowidentifier IS 'Identifies the all change records for the row in the claim_historic table.';
+
+
+--
+-- Name: COLUMN workflow_action.rowversion; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_action.rowversion IS 'Sequential value indicating the number of times this row has been modified.';
+
+
+--
+-- Name: COLUMN workflow_action.change_action; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_action.change_action IS 'Indicates if the last data modification action that occurred to the row was insert (i), update (u) or delete (d).';
+
+
+--
+-- Name: COLUMN workflow_action.change_user; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_action.change_user IS 'The user id of the last person to modify the row.';
+
+
+--
+-- Name: COLUMN workflow_action.change_time; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_action.change_time IS 'The date and time the row was last modified.';
+
+
+--
+-- Name: workflow_action_historic; Type: TABLE; Schema: opentenure; Owner: postgres
+--
+
+CREATE TABLE workflow_action_historic (
+    id character varying(40),
+    step_id character varying(40),
+    report_name character varying(100),
+    button_label character varying(100),
+    action_code character varying(20),
+    rowidentifier character varying(40),
+    rowversion integer,
+    change_action character(1),
+    change_user character varying(50),
+    change_time timestamp without time zone,
+    change_time_valid_until timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE workflow_action_historic OWNER TO postgres;
+
+--
+-- Name: TABLE workflow_action_historic; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON TABLE workflow_action_historic IS 'Historic table for workflow actions.';
+
+
+--
+-- Name: workflow_req_doc; Type: TABLE; Schema: opentenure; Owner: postgres
+--
+
+CREATE TABLE workflow_req_doc (
+    id character varying(40) NOT NULL,
+    step_id character varying(40) NOT NULL,
+    doc_type character varying(20) NOT NULL,
+    rowidentifier character varying(40) DEFAULT public.uuid_generate_v1() NOT NULL,
+    rowversion integer DEFAULT 0 NOT NULL,
+    change_action character(1) DEFAULT 'i'::bpchar NOT NULL,
+    change_user character varying(50),
+    change_time timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE workflow_req_doc OWNER TO postgres;
+
+--
+-- Name: TABLE workflow_req_doc; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON TABLE workflow_req_doc IS 'Required document types for workflow step.';
+
+
+--
+-- Name: COLUMN workflow_req_doc.id; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_req_doc.id IS 'Primary key.';
+
+
+--
+-- Name: COLUMN workflow_req_doc.step_id; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_req_doc.step_id IS 'Workflow step id.';
+
+
+--
+-- Name: COLUMN workflow_req_doc.doc_type; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_req_doc.doc_type IS 'Document type code.';
+
+
+--
+-- Name: COLUMN workflow_req_doc.rowidentifier; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_req_doc.rowidentifier IS 'Identifies the all change records for the row in the claim_historic table.';
+
+
+--
+-- Name: COLUMN workflow_req_doc.rowversion; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_req_doc.rowversion IS 'Sequential value indicating the number of times this row has been modified.';
+
+
+--
+-- Name: COLUMN workflow_req_doc.change_action; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_req_doc.change_action IS 'Indicates if the last data modification action that occurred to the row was insert (i), update (u) or delete (d).';
+
+
+--
+-- Name: COLUMN workflow_req_doc.change_user; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_req_doc.change_user IS 'The user id of the last person to modify the row.';
+
+
+--
+-- Name: COLUMN workflow_req_doc.change_time; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_req_doc.change_time IS 'The date and time the row was last modified.';
+
+
+--
+-- Name: workflow_req_doc_historic; Type: TABLE; Schema: opentenure; Owner: postgres
+--
+
+CREATE TABLE workflow_req_doc_historic (
+    id character varying(40),
+    step_id character varying(40),
+    doc_type character varying(20),
+    rowidentifier character varying(40),
+    rowversion integer,
+    change_action character(1),
+    change_user character varying(50),
+    change_time timestamp without time zone,
+    change_time_valid_until timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE workflow_req_doc_historic OWNER TO postgres;
+
+--
+-- Name: TABLE workflow_req_doc_historic; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON TABLE workflow_req_doc_historic IS 'Historic table for required document types for workflow step.';
+
+
+--
+-- Name: workflow_step; Type: TABLE; Schema: opentenure; Owner: postgres
+--
+
+CREATE TABLE workflow_step (
+    id character varying(40) NOT NULL,
+    num integer NOT NULL,
+    claim_status character varying(20) NOT NULL,
+    parcel_size integer DEFAULT 0 NOT NULL,
+    bigger_than_size boolean DEFAULT true NOT NULL,
+    require_all_docs boolean DEFAULT true NOT NULL,
+    next_step_tip character varying(1000) DEFAULT ''::character varying NOT NULL,
+    rowidentifier character varying(40) DEFAULT public.uuid_generate_v1() NOT NULL,
+    rowversion integer DEFAULT 0 NOT NULL,
+    change_action character(1) DEFAULT 'i'::bpchar NOT NULL,
+    change_user character varying(50),
+    change_time timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE workflow_step OWNER TO postgres;
+
+--
+-- Name: TABLE workflow_step; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON TABLE workflow_step IS 'Workflow steps historic table.';
+
+
+--
+-- Name: COLUMN workflow_step.id; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_step.id IS 'Primary key.';
+
+
+--
+-- Name: COLUMN workflow_step.num; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_step.num IS 'Step number. Steps validation will be always started from the latest/biggest step number.';
+
+
+--
+-- Name: COLUMN workflow_step.claim_status; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_step.claim_status IS 'Claim status code. Defines claim status for the workflow step.';
+
+
+--
+-- Name: COLUMN workflow_step.parcel_size; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_step.parcel_size IS 'Defines parcel size in sq. meters for the workflow step.';
+
+
+--
+-- Name: COLUMN workflow_step.bigger_than_size; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_step.bigger_than_size IS 'Boolean value, indicating how parcel size have to be evaluated. True value will be treated as parcel size bigger than the value in the parcel_size column. False value will be treated as less than the value in the parcel_size colum.';
+
+
+--
+-- Name: COLUMN workflow_step.require_all_docs; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_step.require_all_docs IS 'Boolean flag indicating whether to check attachment of all required documents or only one of them';
+
+
+--
+-- Name: COLUMN workflow_step.next_step_tip; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_step.next_step_tip IS 'Text description of the actions, that have to be done by the user to get to the next step in workflow.';
+
+
+--
+-- Name: COLUMN workflow_step.rowidentifier; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_step.rowidentifier IS 'Identifies the all change records for the row in the claim_historic table.';
+
+
+--
+-- Name: COLUMN workflow_step.rowversion; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_step.rowversion IS 'Sequential value indicating the number of times this row has been modified.';
+
+
+--
+-- Name: COLUMN workflow_step.change_action; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_step.change_action IS 'Indicates if the last data modification action that occurred to the row was insert (i), update (u) or delete (d).';
+
+
+--
+-- Name: COLUMN workflow_step.change_user; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_step.change_user IS 'The user id of the last person to modify the row.';
+
+
+--
+-- Name: COLUMN workflow_step.change_time; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN workflow_step.change_time IS 'The date and time the row was last modified.';
+
+
+--
+-- Name: workflow_step_historic; Type: TABLE; Schema: opentenure; Owner: postgres
+--
+
+CREATE TABLE workflow_step_historic (
+    id character varying(40),
+    num integer,
+    claim_status character varying(20),
+    parcel_size integer,
+    bigger_than_size boolean,
+    require_all_docs boolean,
+    next_step_tip character varying(1000),
+    rowidentifier character varying(40),
+    rowversion integer,
+    change_action character(1),
+    change_user character varying(50),
+    change_time timestamp without time zone,
+    change_time_valid_until timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE workflow_step_historic OWNER TO postgres;
+
 SET search_path = party, pg_catalog;
 
 --
@@ -14301,6 +15187,55 @@ COMMENT ON COLUMN id_type.status IS 'Status of the id type';
 --
 
 COMMENT ON COLUMN id_type.description IS 'Description of the id type.';
+
+
+--
+-- Name: marital_status; Type: TABLE; Schema: party; Owner: postgres
+--
+
+CREATE TABLE marital_status (
+    code character varying(20) NOT NULL,
+    display_value character varying(500) NOT NULL,
+    status character(1) DEFAULT 't'::bpchar NOT NULL,
+    description character varying(1000)
+);
+
+
+ALTER TABLE marital_status OWNER TO postgres;
+
+--
+-- Name: TABLE marital_status; Type: COMMENT; Schema: party; Owner: postgres
+--
+
+COMMENT ON TABLE marital_status IS 'Code list of marital statuses.';
+
+
+--
+-- Name: COLUMN marital_status.code; Type: COMMENT; Schema: party; Owner: postgres
+--
+
+COMMENT ON COLUMN marital_status.code IS 'The code for the marital status.';
+
+
+--
+-- Name: COLUMN marital_status.display_value; Type: COMMENT; Schema: party; Owner: postgres
+--
+
+COMMENT ON COLUMN marital_status.display_value IS 'Displayed value of the marital status.';
+
+
+--
+-- Name: COLUMN marital_status.status; Type: COMMENT; Schema: party; Owner: postgres
+--
+
+COMMENT ON COLUMN marital_status.status IS 'Status of the record.';
+
+
+--
+-- Name: COLUMN marital_status.description; Type: COMMENT; Schema: party; Owner: postgres
+--
+
+COMMENT ON COLUMN marital_status.description IS 'Description of the marital status.';
 
 
 --
@@ -17660,6 +18595,62 @@ ALTER TABLE ONLY address
     ADD CONSTRAINT address_pkey PRIMARY KEY (id);
 
 
+--
+-- Name: commune_type_pkey; Type: CONSTRAINT; Schema: address; Owner: postgres
+--
+
+ALTER TABLE ONLY commune
+    ADD CONSTRAINT commune_type_pkey PRIMARY KEY (code);
+
+
+--
+-- Name: country_type_display_value_unique; Type: CONSTRAINT; Schema: address; Owner: postgres
+--
+
+ALTER TABLE ONLY country
+    ADD CONSTRAINT country_type_display_value_unique UNIQUE (display_value);
+
+
+--
+-- Name: country_type_pkey; Type: CONSTRAINT; Schema: address; Owner: postgres
+--
+
+ALTER TABLE ONLY country
+    ADD CONSTRAINT country_type_pkey PRIMARY KEY (code);
+
+
+--
+-- Name: municipality_type_display_value_unique; Type: CONSTRAINT; Schema: address; Owner: postgres
+--
+
+ALTER TABLE ONLY municipality
+    ADD CONSTRAINT municipality_type_display_value_unique UNIQUE (display_value);
+
+
+--
+-- Name: municipality_type_pkey; Type: CONSTRAINT; Schema: address; Owner: postgres
+--
+
+ALTER TABLE ONLY municipality
+    ADD CONSTRAINT municipality_type_pkey PRIMARY KEY (code);
+
+
+--
+-- Name: province_type_display_value_unique; Type: CONSTRAINT; Schema: address; Owner: postgres
+--
+
+ALTER TABLE ONLY province
+    ADD CONSTRAINT province_type_display_value_unique UNIQUE (display_value);
+
+
+--
+-- Name: province_type_pkey; Type: CONSTRAINT; Schema: address; Owner: postgres
+--
+
+ALTER TABLE ONLY province
+    ADD CONSTRAINT province_type_pkey PRIMARY KEY (code);
+
+
 SET search_path = administrative, pg_catalog;
 
 --
@@ -18393,6 +19384,22 @@ ALTER TABLE ONLY document_chunk
 SET search_path = opentenure, pg_catalog;
 
 --
+-- Name: adjacency_type_display_value_unique; Type: CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY adjacency_type
+    ADD CONSTRAINT adjacency_type_display_value_unique UNIQUE (display_value);
+
+
+--
+-- Name: adjacency_type_pkey; Type: CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY adjacency_type
+    ADD CONSTRAINT adjacency_type_pkey PRIMARY KEY (code);
+
+
+--
 -- Name: attachment_pkey; Type: CONSTRAINT; Schema: opentenure; Owner: postgres
 --
 
@@ -18569,6 +19576,22 @@ ALTER TABLE ONLY attachment_chunk
 
 
 --
+-- Name: land_project_display_value_unique; Type: CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY land_project
+    ADD CONSTRAINT land_project_display_value_unique UNIQUE (display_value);
+
+
+--
+-- Name: land_project_pkey; Type: CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY land_project
+    ADD CONSTRAINT land_project_pkey PRIMARY KEY (code);
+
+
+--
 -- Name: party_for_claim_share_pkey; Type: CONSTRAINT; Schema: opentenure; Owner: postgres
 --
 
@@ -18656,6 +19679,38 @@ ALTER TABLE ONLY termination_reason
     ADD CONSTRAINT termination_reason_pkey PRIMARY KEY (code);
 
 
+--
+-- Name: workflow_action_pkey; Type: CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY workflow_action
+    ADD CONSTRAINT workflow_action_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workflow_req_doc_pkey; Type: CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY workflow_req_doc
+    ADD CONSTRAINT workflow_req_doc_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workflow_step_num_unique; Type: CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY workflow_step
+    ADD CONSTRAINT workflow_step_num_unique UNIQUE (num);
+
+
+--
+-- Name: workflow_step_pkey; Type: CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY workflow_step
+    ADD CONSTRAINT workflow_step_pkey PRIMARY KEY (id);
+
+
 SET search_path = party, pg_catalog;
 
 --
@@ -18728,6 +19783,22 @@ ALTER TABLE ONLY id_type
 
 ALTER TABLE ONLY id_type
     ADD CONSTRAINT id_type_pkey PRIMARY KEY (code);
+
+
+--
+-- Name: marital_status_display_value_unique; Type: CONSTRAINT; Schema: party; Owner: postgres
+--
+
+ALTER TABLE ONLY marital_status
+    ADD CONSTRAINT marital_status_display_value_unique UNIQUE (display_value);
+
+
+--
+-- Name: marital_status_pkey; Type: CONSTRAINT; Schema: party; Owner: postgres
+--
+
+ALTER TABLE ONLY marital_status
+    ADD CONSTRAINT marital_status_pkey PRIMARY KEY (code);
 
 
 --
@@ -21851,6 +22922,27 @@ CREATE TRIGGER __track_changes BEFORE INSERT OR UPDATE ON party_for_restriction 
 
 
 --
+-- Name: __track_changes; Type: TRIGGER; Schema: opentenure; Owner: postgres
+--
+
+CREATE TRIGGER __track_changes BEFORE INSERT OR UPDATE ON workflow_step FOR EACH ROW EXECUTE PROCEDURE public.f_for_trg_track_changes();
+
+
+--
+-- Name: __track_changes; Type: TRIGGER; Schema: opentenure; Owner: postgres
+--
+
+CREATE TRIGGER __track_changes BEFORE INSERT OR UPDATE ON workflow_req_doc FOR EACH ROW EXECUTE PROCEDURE public.f_for_trg_track_changes();
+
+
+--
+-- Name: __track_changes; Type: TRIGGER; Schema: opentenure; Owner: postgres
+--
+
+CREATE TRIGGER __track_changes BEFORE INSERT OR UPDATE ON workflow_action FOR EACH ROW EXECUTE PROCEDURE public.f_for_trg_track_changes();
+
+
+--
 -- Name: __track_history; Type: TRIGGER; Schema: opentenure; Owner: postgres
 --
 
@@ -21981,6 +23073,27 @@ CREATE TRIGGER __track_history AFTER DELETE OR UPDATE ON restriction FOR EACH RO
 --
 
 CREATE TRIGGER __track_history AFTER DELETE OR UPDATE ON party_for_restriction FOR EACH ROW EXECUTE PROCEDURE public.f_for_trg_track_history();
+
+
+--
+-- Name: __track_history; Type: TRIGGER; Schema: opentenure; Owner: postgres
+--
+
+CREATE TRIGGER __track_history AFTER DELETE OR UPDATE ON workflow_step FOR EACH ROW EXECUTE PROCEDURE public.f_for_trg_track_history();
+
+
+--
+-- Name: __track_history; Type: TRIGGER; Schema: opentenure; Owner: postgres
+--
+
+CREATE TRIGGER __track_history AFTER DELETE OR UPDATE ON workflow_req_doc FOR EACH ROW EXECUTE PROCEDURE public.f_for_trg_track_history();
+
+
+--
+-- Name: __track_history; Type: TRIGGER; Schema: opentenure; Owner: postgres
+--
+
+CREATE TRIGGER __track_history AFTER DELETE OR UPDATE ON workflow_action FOR EACH ROW EXECUTE PROCEDURE public.f_for_trg_track_history();
 
 
 --
@@ -22213,6 +23326,32 @@ CREATE TRIGGER __track_history AFTER DELETE OR UPDATE ON transaction FOR EACH RO
 --
 
 CREATE TRIGGER __track_history AFTER DELETE OR UPDATE ON transaction_source FOR EACH ROW EXECUTE PROCEDURE public.f_for_trg_track_history();
+
+
+SET search_path = address, pg_catalog;
+
+--
+-- Name: commune_municipality_fkey; Type: FK CONSTRAINT; Schema: address; Owner: postgres
+--
+
+ALTER TABLE ONLY commune
+    ADD CONSTRAINT commune_municipality_fkey FOREIGN KEY (municipality_code) REFERENCES municipality(code) ON UPDATE CASCADE;
+
+
+--
+-- Name: municipality_province_fkey; Type: FK CONSTRAINT; Schema: address; Owner: postgres
+--
+
+ALTER TABLE ONLY municipality
+    ADD CONSTRAINT municipality_province_fkey FOREIGN KEY (province_code) REFERENCES province(code) ON UPDATE CASCADE;
+
+
+--
+-- Name: province_country_fkey; Type: FK CONSTRAINT; Schema: address; Owner: postgres
+--
+
+ALTER TABLE ONLY province
+    ADD CONSTRAINT province_country_fkey FOREIGN KEY (country_code) REFERENCES country(code) ON UPDATE CASCADE;
 
 
 SET search_path = administrative, pg_catalog;
@@ -22970,6 +24109,22 @@ ALTER TABLE ONLY survey_point
 SET search_path = opentenure, pg_catalog;
 
 --
+-- Name: birth_commune_code_fkey; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY party
+    ADD CONSTRAINT birth_commune_code_fkey FOREIGN KEY (birth_commune_code) REFERENCES address.commune(code) ON UPDATE CASCADE;
+
+
+--
+-- Name: birth_country_code_fkey; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY party
+    ADD CONSTRAINT birth_country_code_fkey FOREIGN KEY (birth_country_code) REFERENCES address.country(code) ON UPDATE CASCADE;
+
+
+--
 -- Name: claim_claimant_id_fk8; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
 --
 
@@ -23023,6 +24178,22 @@ ALTER TABLE ONLY claim
 
 ALTER TABLE ONLY claim_uses_attachment
     ADD CONSTRAINT claim_uses_attachment_claim_id_fk126 FOREIGN KEY (claim_id) REFERENCES claim(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: commune_code_fkey; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY claim
+    ADD CONSTRAINT commune_code_fkey FOREIGN KEY (commune_code) REFERENCES address.commune(code) ON UPDATE CASCADE;
+
+
+--
+-- Name: east_adj_type_fkey; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY claim
+    ADD CONSTRAINT east_adj_type_fkey FOREIGN KEY (east_adjacency_type) REFERENCES adjacency_type(code) ON UPDATE CASCADE;
 
 
 --
@@ -23162,6 +24333,38 @@ ALTER TABLE ONLY form_payload
 
 
 --
+-- Name: land_project_fkey; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY claim
+    ADD CONSTRAINT land_project_fkey FOREIGN KEY (land_project_code) REFERENCES land_project(code) ON UPDATE CASCADE;
+
+
+--
+-- Name: marital_status_code_fkey; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY party
+    ADD CONSTRAINT marital_status_code_fkey FOREIGN KEY (marital_status_code) REFERENCES party.marital_status(code) ON UPDATE CASCADE;
+
+
+--
+-- Name: north_adj_type_fkey; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY claim
+    ADD CONSTRAINT north_adj_type_fkey FOREIGN KEY (north_adjacency_type) REFERENCES adjacency_type(code) ON UPDATE CASCADE;
+
+
+--
+-- Name: party_country_code_fkey; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY party
+    ADD CONSTRAINT party_country_code_fkey FOREIGN KEY (id_issuance_country) REFERENCES address.country(code) ON UPDATE CASCADE;
+
+
+--
 -- Name: party_for_claim_share_claim_id_fk43; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
 --
 
@@ -23191,6 +24394,22 @@ ALTER TABLE ONLY party_for_restriction
 
 ALTER TABLE ONLY party_for_restriction
     ADD CONSTRAINT party_for_restriction_restriction_id_fk FOREIGN KEY (restriction_id) REFERENCES restriction(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: party_province_code_fkey; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY party
+    ADD CONSTRAINT party_province_code_fkey FOREIGN KEY (id_issuance_province) REFERENCES address.province(code) ON UPDATE CASCADE;
+
+
+--
+-- Name: residence_commune_code_fkey; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY party
+    ADD CONSTRAINT residence_commune_code_fkey FOREIGN KEY (residence_commune_code) REFERENCES address.commune(code) ON UPDATE CASCADE;
 
 
 --
@@ -23231,6 +24450,54 @@ ALTER TABLE ONLY section_payload
 
 ALTER TABLE ONLY section_template
     ADD CONSTRAINT section_template_form_template_name_fkey FOREIGN KEY (form_template_name) REFERENCES form_template(name) ON DELETE CASCADE;
+
+
+--
+-- Name: south_adj_type_fkey; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY claim
+    ADD CONSTRAINT south_adj_type_fkey FOREIGN KEY (south_adjacency_type) REFERENCES adjacency_type(code) ON UPDATE CASCADE;
+
+
+--
+-- Name: west_adj_type_fkey; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY claim
+    ADD CONSTRAINT west_adj_type_fkey FOREIGN KEY (west_adjacency_type) REFERENCES adjacency_type(code) ON UPDATE CASCADE;
+
+
+--
+-- Name: workflow_action_step_id_fk; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY workflow_action
+    ADD CONSTRAINT workflow_action_step_id_fk FOREIGN KEY (step_id) REFERENCES workflow_step(id) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- Name: workflow_req_doc_doc_type_fk18; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY workflow_req_doc
+    ADD CONSTRAINT workflow_req_doc_doc_type_fk18 FOREIGN KEY (doc_type) REFERENCES source.administrative_source_type(code) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- Name: workflow_req_doc_step_id_fk; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY workflow_req_doc
+    ADD CONSTRAINT workflow_req_doc_step_id_fk FOREIGN KEY (step_id) REFERENCES workflow_step(id) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- Name: workflow_step_claim_status_fk18; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY workflow_step
+    ADD CONSTRAINT workflow_step_claim_status_fk18 FOREIGN KEY (claim_status) REFERENCES claim_status(code) ON UPDATE CASCADE ON DELETE RESTRICT;
 
 
 SET search_path = party, pg_catalog;

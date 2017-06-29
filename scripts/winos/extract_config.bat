@@ -44,6 +44,9 @@ echo ### Dumping reference tables... >> %EXTRACT_LOG% 2>&1
     -t administrative.ba_unit_rel_type -t administrative.ba_unit_type ^
 	-t administrative.condition_type -t administrative.mortgage_type ^
 	-t administrative.rrr_group_type -t administrative.rrr_type ^
+	-t address.country -t address.province ^
+	-t address.municipality -t address.commune ^
+	-t party.marital_status -t opentenure.land_project ^
 	-t application.application_status_type -t application.service_status_type ^
 	-t application.service_action_type -t application.type_action ^
 	-t application.application_action_type -t application.request_category_type ^
@@ -55,8 +58,9 @@ echo ### Dumping reference tables... >> %EXTRACT_LOG% 2>&1
 	-t cadastre.utility_network_status_type -t cadastre.utility_network_type ^
 	-t cadastre.cadastre_object_type -t party.communication_type ^
 	-t opentenure.claim_status -t opentenure.rejection_reason -t opentenure.field_constraint_type ^
-	-t opentenure.field_type -t opentenure.field_value_type ^
+	-t opentenure.field_type -t opentenure.field_value_type -t opentenure.adjacency_type ^
 	-t opentenure.termination_reason ^
+	-t opentenure.workflow_step -t opentenure.workflow_req_doc -t opentenure.workflow_action ^
 	-t party.gender_type -t party.group_party_type ^
 	-t party.id_type -t party.party_type ^
 	-t party.party_role_type -t source.administrative_source_type ^

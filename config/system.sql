@@ -23,10 +23,10 @@ SET SESSION AUTHORIZATION DEFAULT;
 
 ALTER TABLE config_map_layer_type DISABLE TRIGGER ALL;
 
-INSERT INTO config_map_layer_type (code, display_value, status, description) VALUES ('wms', 'WMS server with layers::::Server WMS con layer::::::::::::Servidor WMS con capas::::::::WMS server with layers::::::::', 'c', '');
-INSERT INTO config_map_layer_type (code, display_value, status, description) VALUES ('shape', 'Shapefile::::Shapefile::::::::::::Formato Shapefile::::::::Arquivo de forma::::::::', 'c', '');
-INSERT INTO config_map_layer_type (code, display_value, status, description) VALUES ('pojo', 'Pojo layer::::Pojo layer::::::::::::Capa Pojo::::::::Pojo layer::::::::', 'c', '');
-INSERT INTO config_map_layer_type (code, display_value, status, description) VALUES ('pojo_public_display', 'Pojo layer used for public display::::::::::::::::Capa Pojo utilizado para la visualización pública::::::::Pojo layer used for public display::::::::', 'c', 'It is an extension of pojo layer. It is used only during the public display map generation.::::::::::::::::Es una extensión de la capa de pojo. Se utiliza sólo durante la generación pública de la exhibición del mapa.::::::::It is an extension of pojo layer. It is used only during the public display map generation.::::::::');
+INSERT INTO config_map_layer_type (code, display_value, status, description) VALUES ('wms', 'WMS server with layers::::WMS server with layers', 'c', '::::');
+INSERT INTO config_map_layer_type (code, display_value, status, description) VALUES ('shape', 'Shapefile::::Arquivo de forma', 'c', '::::');
+INSERT INTO config_map_layer_type (code, display_value, status, description) VALUES ('pojo', 'Pojo layer::::Pojo layer', 'c', '::::');
+INSERT INTO config_map_layer_type (code, display_value, status, description) VALUES ('pojo_public_display', 'Pojo layer used for public display::::Pojo layer used for public display', 'c', 'It is an extension of pojo layer. It is used only during the public display map generation.::::It is an extension of pojo layer. It is used only during the public display map generation.');
 
 
 ALTER TABLE config_map_layer_type ENABLE TRIGGER ALL;
@@ -79,7 +79,6 @@ ALTER TABLE query ENABLE TRIGGER ALL;
 
 ALTER TABLE config_map_layer DISABLE TRIGGER ALL;
 
-INSERT INTO config_map_layer (name, title, type_code, active, visible_in_start, item_order, style, url, wms_layers, wms_version, wms_format, wms_data_source, pojo_structure, pojo_query_name, pojo_query_name_for_select, shape_location, security_user, security_password, added_from_bulk_operation, use_in_public_display, use_for_ot) VALUES ('bishk', 'Bish::::::::::::::::::::::::::::::::::::', 'wms', true, false, 10, '', 'http://localhost:8080/geoserver/mast/wms', 'mast:bishkek_sample_big', '1.1.0', 'image/jpeg', '', '', NULL, NULL, '', '', '', false, false, true);
 INSERT INTO config_map_layer (name, title, type_code, active, visible_in_start, item_order, style, url, wms_layers, wms_version, wms_format, wms_data_source, pojo_structure, pojo_query_name, pojo_query_name_for_select, shape_location, security_user, security_password, added_from_bulk_operation, use_in_public_display, use_for_ot) VALUES ('claims-orthophoto', 'Claims::::::::::::::::::::::::::::::::::::အဆိုပြုမှု', 'wms', true, false, 12, '', 'http://localhost:8080/geoserver/opentenure/wms', 'opentenure:claims', '1.1.1', 'image/png', '', '', NULL, NULL, '', '', '', false, false, true);
 
 
@@ -104,15 +103,15 @@ ALTER TABLE config_map_layer_metadata ENABLE TRIGGER ALL;
 
 ALTER TABLE panel_launcher_group DISABLE TRIGGER ALL;
 
-INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('recordRelationship', 'Record Relationship::::::::تسجيل العلاقة::::::::::::::::Cadastrar Relacionamento::::::::记录关系', 'Panels used for relationship services::::::::لوحة تستخدم لحدمات العلاقات::::::::::::::::Panels used for relationship services::::::::用于关系服务的面板', 'c');
-INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('cancelRelationship', 'Cancel Relationship::::::::الغاء الصلة::::::::::::::::Cancelar Relacionamento::::::::取消关系', 'Panels used for cancel relationship services::::::::لوحة تستخدم  لخدمات الغاء الملكية::::::::::::::::Panels used for cancel relationship services::::::::用于取消关系服务的面板', 'c');
-INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('nullConstructor', 'Nullary Constructor::::::::منشئ بدون مدخلات::::::::Nullary Constructor::::::::Nullary Constructor::::::::默认的构造函数', 'Panels that do not take any constructor arguments::::::::لوحة لا تأخد اية مدخلات عند المنشئ::::::::Paneles que no tienen ningún argumento del constructor::::::::Panels that do not take any constructor arguments::::::::不带任何构造函数参数的面板', 'c');
-INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('documentServices', 'Document Services::::::::خدمات الوثيقة::::::::Servicios de Documento::::::::Document Services::::::::文件服务', 'Panels used for document services::::::::لوحة تستخدم لخدمات الوثائق::::::::Paneles utilizados para servicios de documentos::::::::Panels used for document services::::::::用于文档服务的面板', 'c');
-INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('cadastreServices', 'Cadastre Services::::::::خدمات المساحة::::::::Servicios de catastro::::::::Cadastre Services::::::::地籍服务', 'Panels used for cadastre services::::::::لوحة تستخدم لخدمات المساحة::::::::Paneles usados para servicios de catastro::::::::Panels used for cadastre services::::::::用于地籍服务的面板', 'c');
-INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('propertyServices', 'Property Services::::::::خدمات  الأملاك::::::::Servicios de propiedad::::::::Property Services::::::::财产服务', 'Panels used for property services::::::::لوحة تستخدم لخدمات الاملاك::::::::Paneles usados por los servicios de propiedad::::::::Panels used for property services::::::::用于财产服务的面板', 'c');
-INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('newPropServices', 'New Property Services::::::::خدمات ملكية جديدة::::::::Nuevos Servicios de Propiedad::::::::New Property Services::::::::新的财产服务', 'Panels used for new property services::::::::لوحة تستخدم لخدمات ملكيات جديدة ::::::::Paneles usados por los nuevos servicios de propiedad::::::::Panels used for new property services::::::::用于新的财产服务的面板', 'c');
-INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('generalRRR', 'General RRR::::::::  (الحقوق , القيود , )::::::::General RRR::::::::General RRR::::::::普通 RRR', 'Panels used for general RRRs::::::::لوحة تستخدم لخدمات الحقوق العامة::::::::Paneles usados por General RRRs::::::::Panels used for general RRRs::::::::用于普通权利限制与责任的面板', 'c');
-INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('leaseRRR', 'Lease RRR::::::::أيجار RRR::::::::Arrendamiento RRR::::::::Lease RRR::::::::租赁权利限制域责任', 'Panels used for Lease RRR::::::::لوحة تستخدم لخدمات  حقوق الأيجار::::::::Paneles usados por Arrendamiento RRR::::::::Panels used for Lease RRR::::::::用于租赁权利限制与责任的面板', 'c');
+INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('recordRelationship', 'Record Relationship::::Cadastrar Relacionamento', 'Panels used for relationship services::::Panels used for relationship services', 'c');
+INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('cancelRelationship', 'Cancel Relationship::::Cancelar Relacionamento', 'Panels used for cancel relationship services::::Panels used for cancel relationship services', 'c');
+INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('nullConstructor', 'Nullary Constructor::::Nullary Constructor', 'Panels that do not take any constructor arguments::::Panels that do not take any constructor arguments', 'c');
+INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('documentServices', 'Document Services::::Document Services', 'Panels used for document services::::Panels used for document services', 'c');
+INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('cadastreServices', 'Cadastre Services::::Cadastre Services', 'Panels used for cadastre services::::Panels used for cadastre services', 'c');
+INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('propertyServices', 'Property Services::::Property Services', 'Panels used for property services::::Panels used for property services', 'c');
+INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('newPropServices', 'New Property Services::::New Property Services', 'Panels used for new property services::::Panels used for new property services', 'c');
+INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('generalRRR', 'General RRR::::General RRR', 'Panels used for general RRRs::::Panels used for general RRRs', 'c');
+INSERT INTO panel_launcher_group (code, display_value, description, status) VALUES ('leaseRRR', 'Lease RRR::::Lease RRR', 'Panels used for Lease RRR::::Panels used for Lease RRR', 'c');
 
 
 ALTER TABLE panel_launcher_group ENABLE TRIGGER ALL;
@@ -123,22 +122,22 @@ ALTER TABLE panel_launcher_group ENABLE TRIGGER ALL;
 
 ALTER TABLE config_panel_launcher DISABLE TRIGGER ALL;
 
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('partySearch', 'Party Search Panel::::::::::::::::::::::::Party Search Panel::::::::', '', 'c', 'nullConstructor', 'org.sola.clients.swing.desktop.party.PartySearchPanelForm', 'cliprgs008', 'searchPersons');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('cancelRelationship', 'Cancel Relationship::::::::الغاء الصلة::::::::::::::::Cancelar Relacionamento::::::::取消关系', '', 'c', 'cancelRelationship', 'org.sola.clients.swing.desktop.administrative.CancelPersonRelationshipPanel', 'cliprgs009', 'cancelRelationship');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('recordRelationship', 'Record Relationship::::::::تسجيل العلاقة::::::::::::::::Cadastrar Relacionamento::::::::记录关系', '', 'c', 'recordRelationship', 'org.sola.clients.swing.desktop.administrative.RecordPersonRelationshipPanel', 'cliprgs009', 'recordRelationship');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('documentTrans', 'Document Transaction Panel::::::::لوحة حركات الوثيقة::::::::Panel de Transacción de Documentos::::::::Document Transaction Panel::::::::文件交易面板', '', 'c', 'documentServices', 'org.sola.clients.swing.desktop.source.TransactionedDocumentsPanel', 'cliprgs016', 'transactionedDocumentPanel');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('documentSearch', 'Document Search Panel::::::::لوحة البحث عن الوثائق::::::::Panel de Busqueda de Documentos::::::::Document Search Panel::::::::文档搜索面板', '', 'c', 'nullConstructor', 'org.sola.clients.swing.desktop.source.DocumentSearchForm', 'cliprgs007', 'documentsearch');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('map', 'Map Panel::::::::لوحة الخارطة::::::::Panel de Mapas::::::::Map Panel::::::::地图面板', '', 'c', 'nullConstructor', 'org.sola.clients.swing.desktop.cadastre.MapPanelForm', 'cliprgs004', 'map');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('applicationSearch', 'Application Search Panel::::::::لوحة البحث عن طلب::::::::Panel de Busqueda de Aplicaciones::::::::Application Search Panel::::::::申请搜索面板', '', 'c', 'nullConstructor', 'org.sola.clients.swing.desktop.application.ApplicationSearchPanel', 'cliprgs003', 'appsearch');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('cadastreTransMap', 'Cadastre Transaction Map Panel::::::::لوحة حركات خارطة المساحة::::::::Panel de Mapas de Transacciones Catastrales::::::::Cadastre Transaction Map Panel::::::::地籍交易图面板', '', 'c', 'cadastreServices', 'org.sola.clients.swing.desktop.cadastre.CadastreTransactionMapPanel', 'cliprgs017', 'cadastreChange');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('property', 'Property Panel::::::::لوحة الملكيات::::::::Panel de Propiedades::::::::Property Panel::::::::财产面板', '', 'c', 'propertyServices', 'org.sola.clients.swing.desktop.administrative.PropertyPanel', 'cliprgs009', 'propertyPanel');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('newProperty', 'New Property Panel::::::::لوحة ملكية جديدة::::::::Nuevo Panel de Propiedades::::::::New Property Panel::::::::新的财产面板', '', 'c', 'newPropServices', 'org.sola.clients.swing.desktop.administrative.PropertyPanel', 'cliprgs009', 'propertyPanel');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('propertySearch', 'Property Search Panel::::::::لوحة البحث عن ملكية::::::::Panel de Busqueda de Propiedades::::::::Property Search Panel::::::::财产搜索面板', '', 'c', 'nullConstructor', 'org.sola.clients.swing.desktop.administrative.BaUnitSearchPanel', 'cliprgs006', 'baunitsearch');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('simpleRight', 'Simple Right Panel::::::::لوحة الحق البسيط::::::::Panel de Derechos Simples::::::::Simple Right Panel::::::::简单的权利面板', '', 'c', 'generalRRR', 'org.sola.clients.swing.desktop.administrative.SimpleRightPanel', NULL, 'simpleRightPanel');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('simpleRightholder', 'Simple Rightholder Panel::::::::لوحة أصحاب الحق البسيط::::::::Panel Titular del derecho simple::::::::Simple Rightholder Panel::::::::简单的权利所有者面板', '', 'c', 'generalRRR', 'org.sola.clients.swing.desktop.administrative.SimpleRightholderPanel', NULL, 'simpleOwnershipPanel');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('mortgage', 'Mortgage Panel::::::::لوحة الرهن::::::::Panel de Hipotecas::::::::Mortgage Panel::::::::抵押面板', '', 'c', 'generalRRR', 'org.sola.clients.swing.desktop.administrative.MortgagePanel', NULL, 'mortgagePanel');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('lease', 'Lease Panel::::::::لوحة الأيجار::::::::Panel de Arrendamientos::::::::Lease Panel::::::::租赁面板', '', 'c', 'leaseRRR', 'org.sola.clients.swing.desktop.administrative.LeasePanel', NULL, 'leasePanel');
-INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('ownership', 'Ownership Share Panel::::::::لوحة ملكية الحصص::::::::Panel de propiedades participativas::::::::Ownership Share Panel::::::::所有权共享面板', '', 'c', 'generalRRR', 'org.sola.clients.swing.desktop.administrative.OwnershipPanel', NULL, 'ownershipPanel');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('partySearch', 'Party Search Panel::::Party Search Panel', '::::', 'c', 'nullConstructor', 'org.sola.clients.swing.desktop.party.PartySearchPanelForm', 'cliprgs008', 'searchPersons');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('cancelRelationship', 'Cancel Relationship::::Cancelar Relacionamento', '::::', 'c', 'cancelRelationship', 'org.sola.clients.swing.desktop.administrative.CancelPersonRelationshipPanel', 'cliprgs009', 'cancelRelationship');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('recordRelationship', 'Record Relationship::::Cadastrar Relacionamento', '::::', 'c', 'recordRelationship', 'org.sola.clients.swing.desktop.administrative.RecordPersonRelationshipPanel', 'cliprgs009', 'recordRelationship');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('documentTrans', 'Document Transaction Panel::::Document Transaction Panel', '::::', 'c', 'documentServices', 'org.sola.clients.swing.desktop.source.TransactionedDocumentsPanel', 'cliprgs016', 'transactionedDocumentPanel');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('documentSearch', 'Document Search Panel::::Document Search Panel', '::::', 'c', 'nullConstructor', 'org.sola.clients.swing.desktop.source.DocumentSearchForm', 'cliprgs007', 'documentsearch');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('map', 'Map Panel::::Map Panel', '::::', 'c', 'nullConstructor', 'org.sola.clients.swing.desktop.cadastre.MapPanelForm', 'cliprgs004', 'map');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('applicationSearch', 'Application Search Panel::::Application Search Panel', '::::', 'c', 'nullConstructor', 'org.sola.clients.swing.desktop.application.ApplicationSearchPanel', 'cliprgs003', 'appsearch');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('cadastreTransMap', 'Cadastre Transaction Map Panel::::Cadastre Transaction Map Panel', '::::', 'c', 'cadastreServices', 'org.sola.clients.swing.desktop.cadastre.CadastreTransactionMapPanel', 'cliprgs017', 'cadastreChange');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('property', 'Property Panel::::Property Panel', '::::', 'c', 'propertyServices', 'org.sola.clients.swing.desktop.administrative.PropertyPanel', 'cliprgs009', 'propertyPanel');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('newProperty', 'New Property Panel::::New Property Panel', '::::', 'c', 'newPropServices', 'org.sola.clients.swing.desktop.administrative.PropertyPanel', 'cliprgs009', 'propertyPanel');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('propertySearch', 'Property Search Panel::::Property Search Panel', '::::', 'c', 'nullConstructor', 'org.sola.clients.swing.desktop.administrative.BaUnitSearchPanel', 'cliprgs006', 'baunitsearch');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('simpleRight', 'Simple Right Panel::::Simple Right Panel', '::::', 'c', 'generalRRR', 'org.sola.clients.swing.desktop.administrative.SimpleRightPanel', NULL, 'simpleRightPanel');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('simpleRightholder', 'Simple Rightholder Panel::::Simple Rightholder Panel', '::::', 'c', 'generalRRR', 'org.sola.clients.swing.desktop.administrative.SimpleRightholderPanel', NULL, 'simpleOwnershipPanel');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('mortgage', 'Mortgage Panel::::Mortgage Panel', '::::', 'c', 'generalRRR', 'org.sola.clients.swing.desktop.administrative.MortgagePanel', NULL, 'mortgagePanel');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('lease', 'Lease Panel::::Lease Panel', '::::', 'c', 'leaseRRR', 'org.sola.clients.swing.desktop.administrative.LeasePanel', NULL, 'leasePanel');
+INSERT INTO config_panel_launcher (code, display_value, description, status, launch_group, panel_class, message_code, card_name) VALUES ('ownership', 'Ownership Share Panel::::Ownership Share Panel', '::::', 'c', 'generalRRR', 'org.sola.clients.swing.desktop.administrative.OwnershipPanel', NULL, 'ownershipPanel');
 
 
 ALTER TABLE config_panel_launcher ENABLE TRIGGER ALL;
@@ -408,7 +407,6 @@ INSERT INTO setting (name, vl, active, description) VALUES ('email-msg-user-acti
 INSERT INTO setting (name, vl, active, description) VALUES ('email-msg-user-activation-subject', 'SOLA OpenTenure account activation', true, 'Subject text to notify Community member account activation on the Community Server Web-site');
 INSERT INTO setting (name, vl, active, description) VALUES ('email-msg-reg-body', 'Dear #{userFullName},<p></p>You have registered on SOLA OpenTenure Web-site. Before you can use your account, it will be reviewed and approved by Community Technologist. 
 Upon account approval, you will receive notification message.<p></p>Your user name is<br />#{userName}<p></p><p></p>Regards,<br />SOLA OpenTenure Team', true, 'Message text for new user registration on OpenTenure Web-site. Sent to user.');
-INSERT INTO setting (name, vl, active, description) VALUES ('email-enable-email-service', '1', true, 'Enables or disables email service. 1 - enable, 0 - disable');
 INSERT INTO setting (name, vl, active, description) VALUES ('email-mailer-jndi-name', 'mail/sola', true, 'Configured mailer service JNDI name');
 INSERT INTO setting (name, vl, active, description) VALUES ('product-name', 'SOLA Community Server', true, 'SOLA product name');
 INSERT INTO setting (name, vl, active, description) VALUES ('product-code', 'scs', true, 'SOLA product code. sr - SOLA Registry, ssr - SOLA Systematic Registration, ssl - SOLA State Land, scs - SOLA Community Server');
@@ -420,14 +418,34 @@ INSERT INTO setting (name, vl, active, description) VALUES ('reports_folder_url'
 INSERT INTO setting (name, vl, active, description) VALUES ('report_server_url', 'http://localhost:8080/jasperserver', true, 'Reporting server URL.');
 INSERT INTO setting (name, vl, active, description) VALUES ('db-utilities-folder', 'C:\Program Files\PostgreSQL\9.1\bin', true, 'Full path to PostgreSQL utilities (bin) folder (e.g. C:\Program Files\PostgreSQL\9.1\bin). Used for backup/restore implementation of SOLA Web admin application');
 INSERT INTO setting (name, vl, active, description) VALUES ('community-name', 'Open Community', true, 'Community name');
-INSERT INTO setting (name, vl, active, description) VALUES ('ot-title-plan-crs-wkt', '', true, 'Custom Coordinate Reference System in WKT format of the map image, generated for claim certificate in OpenTenure');
 INSERT INTO setting (name, vl, active, description) VALUES ('claim_cetificate_report_url', '/reports/cert/Claim_certificate', true, 'URL to the claim certificate report, hosted on the reporting server');
-INSERT INTO setting (name, vl, active, description) VALUES ('offline-mode', '0', true, 'Indicates whether Community Server is connected to the Internet or not. 0 - connected, 1 - not connected');
 INSERT INTO setting (name, vl, active, description) VALUES ('enable-reports', '1', true, 'Indicates whether reports are enbled or disabled. 1 - enabled, 0 - disabled');
-INSERT INTO setting (name, vl, active, description) VALUES ('form23_report_url', '/reports/cert/Form23', true, 'Path to form23 report');
-INSERT INTO setting (name, vl, active, description) VALUES ('docs_for_issuing_cco', 'abstract_book,signed_cco', true, 'List of document type codes, required to set CCO issued status');
-INSERT INTO setting (name, vl, active, description) VALUES ('docs-for-issuing-cco', 'abstract_book,signed_cco', true, 'List of document type codes, required to set CCO issued status');
-INSERT INTO setting (name, vl, active, description) VALUES ('ot-community-area', 'POLYGON((74.58113097369251 42.870322008852305,74.58098076998799 42.86827756520051,74.5836415213311 42.8680888439111,74.58393119990467 42.87023551453079,74.58255790888859 42.87029055638571,74.58113097369251 42.870322008852305))', true, 'Open Tenure community area where parcels can be claimed');
+INSERT INTO setting (name, vl, active, description) VALUES ('workflow_reports_url', '/reports/workflow', true, 'URL to the worflow reports, hosted on the reporting server');
+INSERT INTO setting (name, vl, active, description) VALUES ('email-enable-email-service', '0', true, 'Enables or disables email service. 1 - enable, 0 - disable');
+INSERT INTO setting (name, vl, active, description) VALUES ('ot-title-plan-crs-wkt', 'PROJCS["Camacupa / UTM zone 33S",
+ GEOGCS["Camacupa",
+   DATUM["Camacupa",
+    SPHEROID["Clarke 1880 (RGS)",6378249.145,293.465,AUTHORITY["EPSG","7012"]],
+	TOWGS84[-50.9,-347.6,-231,0,0,0,0],
+	AUTHORITY["EPSG","6220"]
+   ],
+   PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],
+   UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],
+   AUTHORITY["EPSG","4220"]
+ ],
+ PROJECTION["Transverse_Mercator"],
+ PARAMETER["latitude_of_origin",0],
+ PARAMETER["central_meridian",15],
+ PARAMETER["scale_factor",0.9996],
+ PARAMETER["false_easting",500000],
+ PARAMETER["false_northing",10000000],
+ UNIT["metre",1,AUTHORITY["EPSG","9001"]],
+ AXIS["Easting",EAST],
+ AXIS["Northing",NORTH],
+ AUTHORITY["EPSG","22033"]
+]', true, 'Custom Coordinate Reference System in WKT format of the map image, generated for claim certificate in OpenTenure');
+INSERT INTO setting (name, vl, active, description) VALUES ('offline-mode', '0', true, 'Indicates whether Community Server is connected to the Internet or not. 0 - connected, 1 - not connected');
+INSERT INTO setting (name, vl, active, description) VALUES ('ot-community-area', 'POLYGON((14.203822577234073 -9.218402747606008,14.181849920983938 -7.283173467568033,16.752650702234266 -7.304968311856635,16.752650702234266 -9.240090957236655,14.203822577234073 -9.218402747606008))', true, 'Open Tenure community area where parcels can be claimed');
 
 
 ALTER TABLE setting ENABLE TRIGGER ALL;
@@ -438,20 +456,7 @@ ALTER TABLE setting ENABLE TRIGGER ALL;
 
 ALTER TABLE version DISABLE TRIGGER ALL;
 
-INSERT INTO version (version_num) VALUES ('1504a');
-INSERT INTO version (version_num) VALUES ('1506a');
-INSERT INTO version (version_num) VALUES ('1507a');
-INSERT INTO version (version_num) VALUES ('1507b');
-INSERT INTO version (version_num) VALUES ('1508a');
-INSERT INTO version (version_num) VALUES ('1508b');
-INSERT INTO version (version_num) VALUES ('1511a');
-INSERT INTO version (version_num) VALUES ('1512a');
-INSERT INTO version (version_num) VALUES ('1606a');
-INSERT INTO version (version_num) VALUES ('1611a');
-INSERT INTO version (version_num) VALUES ('1612a');
-INSERT INTO version (version_num) VALUES ('1703a');
-INSERT INTO version (version_num) VALUES ('1703b');
-INSERT INTO version (version_num) VALUES ('1704a');
+INSERT INTO version (version_num) VALUES ('1706a');
 
 
 ALTER TABLE version ENABLE TRIGGER ALL;

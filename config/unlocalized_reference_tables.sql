@@ -23,47 +23,6 @@ SET SESSION AUTHORIZATION DEFAULT;
 
 ALTER TABLE request_type_requires_source_type DISABLE TRIGGER ALL;
 
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('cadastralSurvey', 'cadastreChange');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('cadastralSurvey', 'redefineCadastre');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('mortgage', 'varyMortgage');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('title', 'varyMortgage');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('title', 'regnOnTitle');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'regnDeeds');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('lease', 'registerLease');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('powerOfAttorney', 'regnPowerOfAttorney');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('standardDocument', 'regnStandardDocument');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('title', 'noteOccupation');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'noteOccupation');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'usufruct');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'waterRights');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('mortgage', 'mortgage');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'buildingRestriction');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'servitude');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('title', 'lifeEstate');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'lifeEstate');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'newApartment');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'newState');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('title', 'caveat');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'removeCaveat');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('title', 'removeCaveat');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'historicOrder');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'limitedRoadAccess');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('lease', 'varyLease');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'varyLease');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('title', 'varyRight');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'varyRight');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'removeRight');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('title', 'removeRight');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'removeRestriction');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('title', 'removeRestriction');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'cnclPowerOfAttorney');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('deed', 'cnclStandardDocument');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('caveat', 'caveat');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('cadastralSurvey', 'mapExistingParcel');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('title', 'newDigitalTitle');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('relationshipTitle', 'recordRelationship');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('relationshipTitle', 'cancelRelationship');
-INSERT INTO request_type_requires_source_type (source_type_code, request_type_code) VALUES ('restrictionOrder', 'obscurationRequest');
 
 
 ALTER TABLE request_type_requires_source_type ENABLE TRIGGER ALL;
