@@ -1081,7 +1081,7 @@ ALTER TABLE rrr_type DISABLE TRIGGER ALL;
 
 INSERT INTO rrr_type (code, rrr_group_type_code, display_value, is_primary, share_check, party_required, description, status, rrr_panel_code) VALUES ('pp', 'rights', 'Proprietário', false, true, true, '', 'c', NULL);
 INSERT INTO rrr_type (code, rrr_group_type_code, display_value, is_primary, share_check, party_required, description, status, rrr_panel_code) VALUES ('ar', 'rights', 'Arrendamento', false, false, true, '', 'c', NULL);
-INSERT INTO rrr_type (code, rrr_group_type_code, display_value, is_primary, share_check, party_required, description, status, rrr_panel_code) VALUES ('mortgage', 'rights', 'Mortgage::::Hipoteca', false, false, true, '', 'c', NULL);
+INSERT INTO rrr_type (code, rrr_group_type_code, display_value, is_primary, share_check, party_required, description, status, rrr_panel_code) VALUES ('mortgage', 'restrictions', 'Mortgage::::Hipoteca', false, false, true, '', 'x', NULL);
 
 
 ALTER TABLE rrr_type ENABLE TRIGGER ALL;
@@ -1583,7 +1583,6 @@ INSERT INTO workflow_action (id, step_id, report_name, button_label, action_code
 INSERT INTO workflow_action (id, step_id, report_name, button_label, action_code, rowidentifier, rowversion, change_action, change_user, change_time) VALUES ('30-3', '30', 'RenovationLicense', 'Print renovation license', 'print', '0a2b77c4-5b45-11e7-abce-87781838eace', 1, 'i', 'db:postgres', '2017-06-27 20:29:33.957139');
 INSERT INTO workflow_action (id, step_id, report_name, button_label, action_code, rowidentifier, rowversion, change_action, change_user, change_time) VALUES ('30-4', '30', 'SellLicense', 'Print celling license', 'print', '16c7794c-5b45-11e7-abcf-839365cf96f9', 1, 'i', 'db:postgres', '2017-06-27 20:29:55.113198');
 INSERT INTO workflow_action (id, step_id, report_name, button_label, action_code, rowidentifier, rowversion, change_action, change_user, change_time) VALUES ('31-1', '31', NULL, 'Issue', 'issue', '268eb390-5b45-11e7-abd0-979bfc560a76', 1, 'i', 'db:postgres', '2017-06-27 20:30:21.58468');
-INSERT INTO workflow_action (id, step_id, report_name, button_label, action_code, rowidentifier, rowversion, change_action, change_user, change_time) VALUES ('20-1', '20', 'VisitConfirmation', 'Print visit confirmation', 'print', '4a2701d6-5b45-11e7-abd1-03c26b3a9bc2', 1, 'i', 'db:postgres', '2017-06-27 20:31:21.303087');
 INSERT INTO workflow_action (id, step_id, report_name, button_label, action_code, rowidentifier, rowversion, change_action, change_user, change_time) VALUES ('21-1', '21', 'ProvisionalLandTitle', 'Print provisional land title', 'print', '70706a44-5b45-11e7-abd2-5b7e573885a0', 1, 'i', 'db:postgres', '2017-06-27 20:32:25.537594');
 INSERT INTO workflow_action (id, step_id, report_name, button_label, action_code, rowidentifier, rowversion, change_action, change_user, change_time) VALUES ('23-1', '23', 'LandTitle', 'Print land title', 'print', '9a100bde-5b45-11e7-abd4-67c7bcf9445b', 1, 'i', 'db:postgres', '2017-06-27 20:33:35.370339');
 INSERT INTO workflow_action (id, step_id, report_name, button_label, action_code, rowidentifier, rowversion, change_action, change_user, change_time) VALUES ('23-2', '23', 'LandContract', 'Print land contract', 'print', 'a3c47980-5b45-11e7-abd5-578c661f6b43', 1, 'i', 'db:postgres', '2017-06-27 20:33:51.652288');
@@ -1591,6 +1590,7 @@ INSERT INTO workflow_action (id, step_id, report_name, button_label, action_code
 INSERT INTO workflow_action (id, step_id, report_name, button_label, action_code, rowidentifier, rowversion, change_action, change_user, change_time) VALUES ('25-1', '25', 'FencingLicense', 'Print fencing license', 'print', 'cf7992cc-5b45-11e7-abd7-f780f7c6dfb2', 1, 'i', 'db:postgres', '2017-06-27 20:35:04.981166');
 INSERT INTO workflow_action (id, step_id, report_name, button_label, action_code, rowidentifier, rowversion, change_action, change_user, change_time) VALUES ('12-1', '12', 'FencingLicense', 'Print fencing license', 'print', 'be33d49c-5b44-11e7-abcb-ab0198ae2eec', 2, 'u', 'db:postgres', '2017-06-27 20:35:14.156738');
 INSERT INTO workflow_action (id, step_id, report_name, button_label, action_code, rowidentifier, rowversion, change_action, change_user, change_time) VALUES ('21-2', '21', 'ProvisionalLandContract', 'Print provisional land contract', 'print', '847f2408-5b45-11e7-abd3-530470e21d5c', 3, 'u', 'db:postgres', '2017-06-27 20:58:14.953627');
+INSERT INTO workflow_action (id, step_id, report_name, button_label, action_code, rowidentifier, rowversion, change_action, change_user, change_time) VALUES ('20-1', '20', 'Claim_certificate', 'Print visit confirmation', 'print', '4a2701d6-5b45-11e7-abd1-03c26b3a9bc2', 2, 'u', 'db:postgres', '2017-07-11 21:46:06.082661');
 
 
 ALTER TABLE workflow_action ENABLE TRIGGER ALL;

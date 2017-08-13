@@ -402,8 +402,6 @@ INSERT INTO setting (name, vl, active, description) VALUES ('email-msg-notifiabl
 				<br>by <b>#{targetPartyName}</b> 
 				<br>on the following property: <b>#{baUnitName}</b>. <p></p><p></p>Regards,<br />#{sendingOffice}', true, 'Action on Interest body text');
 INSERT INTO setting (name, vl, active, description) VALUES ('email-msg-notifiable-subject', 'SOLA REGISTRY - #{actionToNotify} action on property #{baUnitName}', true, 'Action on Interest subject text');
-INSERT INTO setting (name, vl, active, description) VALUES ('email-msg-user-activation-body', 'Dear #{userFullName},<p></p>Your account has been activated. 
-<p></p>Please use <b>#{userName}</b> to login.<p></p><p></p>Regards,<br />SOLA OpenTenure Team', true, 'Message text to notify Community member account activation on the Community Server Web-site');
 INSERT INTO setting (name, vl, active, description) VALUES ('email-msg-user-activation-subject', 'SOLA OpenTenure account activation', true, 'Subject text to notify Community member account activation on the Community Server Web-site');
 INSERT INTO setting (name, vl, active, description) VALUES ('email-msg-reg-body', 'Dear #{userFullName},<p></p>You have registered on SOLA OpenTenure Web-site. Before you can use your account, it will be reviewed and approved by Community Technologist. 
 Upon account approval, you will receive notification message.<p></p>Your user name is<br />#{userName}<p></p><p></p>Regards,<br />SOLA OpenTenure Team', true, 'Message text for new user registration on OpenTenure Web-site. Sent to user.');
@@ -420,7 +418,6 @@ INSERT INTO setting (name, vl, active, description) VALUES ('db-utilities-folder
 INSERT INTO setting (name, vl, active, description) VALUES ('community-name', 'Open Community', true, 'Community name');
 INSERT INTO setting (name, vl, active, description) VALUES ('claim_cetificate_report_url', '/reports/cert/Claim_certificate', true, 'URL to the claim certificate report, hosted on the reporting server');
 INSERT INTO setting (name, vl, active, description) VALUES ('enable-reports', '1', true, 'Indicates whether reports are enbled or disabled. 1 - enabled, 0 - disabled');
-INSERT INTO setting (name, vl, active, description) VALUES ('workflow_reports_url', '/reports/workflow', true, 'URL to the worflow reports, hosted on the reporting server');
 INSERT INTO setting (name, vl, active, description) VALUES ('email-enable-email-service', '0', true, 'Enables or disables email service. 1 - enable, 0 - disable');
 INSERT INTO setting (name, vl, active, description) VALUES ('ot-title-plan-crs-wkt', 'PROJCS["Camacupa / UTM zone 33S",
  GEOGCS["Camacupa",
@@ -446,6 +443,9 @@ INSERT INTO setting (name, vl, active, description) VALUES ('ot-title-plan-crs-w
 ]', true, 'Custom Coordinate Reference System in WKT format of the map image, generated for claim certificate in OpenTenure');
 INSERT INTO setting (name, vl, active, description) VALUES ('offline-mode', '0', true, 'Indicates whether Community Server is connected to the Internet or not. 0 - connected, 1 - not connected');
 INSERT INTO setting (name, vl, active, description) VALUES ('ot-community-area', 'POLYGON((14.203822577234073 -9.218402747606008,14.181849920983938 -7.283173467568033,16.752650702234266 -7.304968311856635,16.752650702234266 -9.240090957236655,14.203822577234073 -9.218402747606008))', true, 'Open Tenure community area where parcels can be claimed');
+INSERT INTO setting (name, vl, active, description) VALUES ('workflow_reports_url', '/reports/cert', true, 'URL to the worflow reports, hosted on the reporting server');
+INSERT INTO setting (name, vl, active, description) VALUES ('email-msg-user-activation-body', 'Dear #{userFullName},<p></p>Your account has been activated. 
+<p></p>Please use <b>#{userName}</b> to login.<p></p><p></p>Regards,<br />SOLA OpenTenure Team', false, 'Message text to notify Community member account activation on the Community Server Web-site');
 
 
 ALTER TABLE setting ENABLE TRIGGER ALL;
@@ -457,6 +457,7 @@ ALTER TABLE setting ENABLE TRIGGER ALL;
 ALTER TABLE version DISABLE TRIGGER ALL;
 
 INSERT INTO version (version_num) VALUES ('1706a');
+INSERT INTO version (version_num) VALUES ('1708a');
 
 
 ALTER TABLE version ENABLE TRIGGER ALL;
