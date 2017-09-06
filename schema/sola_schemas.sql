@@ -3613,6 +3613,31 @@ COMMENT ON FUNCTION snap_geometry_to_geometry(INOUT geom_to_snap public.geometry
 SET search_path = opentenure, pg_catalog;
 
 --
+-- Name: f_for_trg_claim_number(); Type: FUNCTION; Schema: opentenure; Owner: postgres
+--
+
+CREATE FUNCTION f_for_trg_claim_number() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    IF ((TG_OP = 'UPDATE' OR TG_OP = 'INSERT') AND (NEW.nr is null OR NEW.nr = '')) THEN
+        NEW.nr = (select nextval('opentenure.claim_nr_seq'));
+    END IF;
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION opentenure.f_for_trg_claim_number() OWNER TO postgres;
+
+--
+-- Name: FUNCTION f_for_trg_claim_number(); Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON FUNCTION f_for_trg_claim_number() IS 'This function is for generation of claim number if it is empty';
+
+
+--
 -- Name: f_for_trg_set_default(); Type: FUNCTION; Schema: opentenure; Owner: postgres
 --
 
@@ -11603,6 +11628,7 @@ CREATE TABLE claim (
     neighborhood character varying(150),
     land_project_code character varying(20),
     commune_code character varying(20),
+    plot_number character varying(50) NOT NULL,
     CONSTRAINT enforce_geotype_mapped_geometry CHECK (((public.geometrytype(mapped_geometry) = 'POLYGON'::text) OR (public.geometrytype(mapped_geometry) = 'POINT'::text) OR (public.geometrytype(mapped_geometry) = 'LINESTRING'::text) OR (mapped_geometry IS NULL))),
     CONSTRAINT enforce_valid_mapped_geometry CHECK (public.st_isvalid(mapped_geometry))
 );
@@ -11656,7 +11682,7 @@ COMMENT ON COLUMN claim.decision_date IS 'The decision date on the claim by the 
 -- Name: COLUMN claim.description; Type: COMMENT; Schema: opentenure; Owner: postgres
 --
 
-COMMENT ON COLUMN claim.description IS 'Free description of the claim.';
+COMMENT ON COLUMN claim.description IS 'Claim description.';
 
 
 --
@@ -11919,6 +11945,13 @@ COMMENT ON COLUMN claim.commune_code IS 'Commune code.';
 
 
 --
+-- Name: COLUMN claim.plot_number; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN claim.plot_number IS 'Plot number';
+
+
+--
 -- Name: claim_comment; Type: TABLE; Schema: opentenure; Owner: postgres
 --
 
@@ -12077,7 +12110,8 @@ CREATE TABLE claim_historic (
     east_adjacency_type character varying(20),
     neighborhood character varying(150),
     land_project_code character varying(20),
-    commune_code character varying(20)
+    commune_code character varying(20),
+    plot_number character varying(50)
 );
 
 
@@ -12208,10 +12242,10 @@ ALTER TABLE claim_location_historic OWNER TO postgres;
 --
 
 CREATE SEQUENCE claim_nr_seq
-    START WITH 1
+    START WITH 400
     INCREMENT BY 1
-    NO MINVALUE
-    MAXVALUE 9999
+    MINVALUE 400
+    MAXVALUE 99999999
     CACHE 1
     CYCLE;
 
@@ -13491,7 +13525,9 @@ CREATE TABLE party (
     mother_name character varying(150),
     beneficiary_name character varying(150),
     beneficiary_id_number character varying(20),
-    marital_status_code character varying(20)
+    marital_status_code character varying(20),
+    id_issuance_municipality character varying(20),
+    id_issuance_commune character varying(20)
 );
 
 
@@ -13715,6 +13751,20 @@ COMMENT ON COLUMN party.marital_status_code IS 'Marital status code.';
 
 
 --
+-- Name: COLUMN party.id_issuance_municipality; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.id_issuance_municipality IS 'Id issuance municipality';
+
+
+--
+-- Name: COLUMN party.id_issuance_commune; Type: COMMENT; Schema: opentenure; Owner: postgres
+--
+
+COMMENT ON COLUMN party.id_issuance_commune IS 'ID issuance commune code.';
+
+
+--
 -- Name: party_for_claim_share; Type: TABLE; Schema: opentenure; Owner: postgres
 --
 
@@ -13931,7 +13981,9 @@ CREATE TABLE party_historic (
     mother_name character varying(150),
     beneficiary_name character varying(150),
     beneficiary_id_number character varying(20),
-    marital_status_code character varying(20)
+    marital_status_code character varying(20),
+    id_issuance_municipality character varying(20),
+    id_issuance_commune character varying(20)
 );
 
 
@@ -19424,6 +19476,14 @@ ALTER TABLE ONLY claim_location
 
 
 --
+-- Name: claim_nr_unique; Type: CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY claim
+    ADD CONSTRAINT claim_nr_unique UNIQUE (nr);
+
+
+--
 -- Name: claim_pkey; Type: CONSTRAINT; Schema: opentenure; Owner: postgres
 --
 
@@ -22789,6 +22849,13 @@ CREATE TRIGGER __track_history AFTER DELETE OR UPDATE ON document FOR EACH ROW E
 SET search_path = opentenure, pg_catalog;
 
 --
+-- Name: __claim_number; Type: TRIGGER; Schema: opentenure; Owner: postgres
+--
+
+CREATE TRIGGER __claim_number BEFORE INSERT OR UPDATE ON claim FOR EACH ROW EXECUTE PROCEDURE f_for_trg_claim_number();
+
+
+--
 -- Name: __track_changes; Type: TRIGGER; Schema: opentenure; Owner: postgres
 --
 
@@ -24394,6 +24461,22 @@ ALTER TABLE ONLY party_for_restriction
 
 ALTER TABLE ONLY party_for_restriction
     ADD CONSTRAINT party_for_restriction_restriction_id_fk FOREIGN KEY (restriction_id) REFERENCES restriction(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: party_id_commune_fk; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY party
+    ADD CONSTRAINT party_id_commune_fk FOREIGN KEY (id_issuance_commune) REFERENCES address.commune(code);
+
+
+--
+-- Name: party_id_municipality_fk; Type: FK CONSTRAINT; Schema: opentenure; Owner: postgres
+--
+
+ALTER TABLE ONLY party
+    ADD CONSTRAINT party_id_municipality_fk FOREIGN KEY (id_issuance_municipality) REFERENCES address.municipality(code);
 
 
 --
