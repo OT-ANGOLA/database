@@ -1,0 +1,4 @@
+﻿INSERT INTO system.version SELECT '1709b' WHERE NOT EXISTS (SELECT version_num FROM system.version WHERE version_num = '1709b');
+
+update system.setting set vl='PROJCS["Camacupa / UTM zone 33S", GEOGCS["Camacupa", DATUM["Camacupa", SPHEROID["Clarke 1880 (RGS)",6378249.145,293.465,AUTHORITY["EPSG","7012"]], TOWGS84[-50.9,-347.6,-231,0,0,0,0], AUTHORITY["EPSG","6220"] ], PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]], UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]], AUTHORITY["EPSG","4220"] ], PROJECTION["Transverse_Mercator"], PARAMETER["latitude_of_origin",0], PARAMETER["central_meridian",15], PARAMETER["scale_factor",0.9996], PARAMETER["false_easting",500000], PARAMETER["false_northing",10000000], UNIT["metre",1,AUTHORITY["EPSG","9001"]], AXIS["Easting",EAST], AXIS["Northing",NORTH], AUTHORITY["EPSG","22033"] ]'
+where name = 'ot-title-plan-crs-wkt';
